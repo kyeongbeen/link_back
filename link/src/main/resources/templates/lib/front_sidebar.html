@@ -1,0 +1,37 @@
+<aside th:fragment="frag_front_sidebar">
+
+    <style>
+        /* 상단바 스타일 */
+        nav {
+            background-color: #9E9E9E;
+            color: black;
+            text-align: center;
+            padding: 10px 0;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+    </style>
+
+
+
+    <div class="sidebar">
+        <nav>
+            <ul>
+                <li>대시보드</li>
+                <li>작업</li>
+                <li>타임라인</li>
+                <li>
+                    <a href="/post/list" class="nav-link active">
+                        게시판
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</aside>
