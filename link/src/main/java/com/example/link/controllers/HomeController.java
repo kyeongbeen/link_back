@@ -10,5 +10,4 @@ public class HomeController {
         return "board/post_list";
     }
 
-
 }
