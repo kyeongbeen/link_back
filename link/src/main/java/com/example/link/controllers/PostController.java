@@ -41,5 +41,11 @@ public class PostController {
         postService.write(post);
         return "board/post_list";
     }
-
+    @PostMapping("/detail/{postId}")
+    public String detail(@PathVariable("postId") Integer postId, Model model) {
+        System.out.println("상세보기 : " + postId);
+        PostDto post = this.postService.getOnePost(postId);
+        model.addAttribute("post", post);
+        return "board/post_detail";
+    }
 }
