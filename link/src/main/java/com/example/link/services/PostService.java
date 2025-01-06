@@ -32,8 +32,7 @@ public class PostService {
         return postDtos;
     }
 
-    public void write(PostDto postDto) {
-        this.postRepository.save( postDto.toEntity() );
+    public void write(Post post) {
+        postRepository.save(post);
     }
-
 }

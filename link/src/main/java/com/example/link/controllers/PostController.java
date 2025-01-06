@@ -6,9 +6,11 @@ import com.example.link.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RequestMapping("/post")
@@ -27,16 +29,16 @@ public class PostController {
         return "board/post_list";
     }
 
-    @PostMapping("/create")
+    @GetMapping("/create")
     public String create() {
-        return "/board/post_form";
+        return "board/post_form";
     }
 
     @PostMapping("/writeTest")
-    public String writeTest(PostDto postdto) {
-        System.out.println("제목: "+ postdto.getTitle());
-        System.out.println("내용: "+ postdto.getContent());
-        postService.write(postdto);
+    public String writeTest(Post post) {
+        System.out.println("제목: "+ post.getTitle());
+        System.out.println("내용: "+ post.getContent());
+        postService.write(post);
         return "board/post_list";
     }
 
