@@ -26,6 +26,7 @@ public class Task {
     @Column(columnDefinition = "TEXT")
     private String content;
 
+    private String startDate;
     private String deadline;
 
     @Enumerated(EnumType.STRING)

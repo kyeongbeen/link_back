@@ -34,6 +34,7 @@ public class TaskService {
                             .title(task.getTitle())
                             .content(task.getContent())
                             .taskPriority(task.getTaskPriority())
+                            .startDate(task.getStartDate())
                             .deadline(task.getDeadline())
                             .status(task.getStatus())
                             .build()
@@ -49,6 +50,7 @@ public class TaskService {
                 .title(taskDTO.getTitle())
                 .content(taskDTO.getContent())
                 .taskPriority(taskDTO.getTaskPriority())
+                .startDate(taskDTO.getStartDate())
                 .deadline(taskDTO.getDeadline())
                 .status(taskDTO.getStatus())
                 .project(projectRepository.findById(taskDTO.getProjectId()).get())
@@ -65,6 +67,7 @@ public class TaskService {
         task.setAssignedUser(taskDTO.getAssignedUser());
         task.setTitle(taskDTO.getTitle());
         task.setContent(taskDTO.getContent());
+        task.setStartDate(taskDTO.getStartDate());
         task.setDeadline(taskDTO.getDeadline());
         task.setStatus(taskDTO.getStatus());
         task.setTaskPriority(taskDTO.getTaskPriority());

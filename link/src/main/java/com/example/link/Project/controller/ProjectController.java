@@ -7,6 +7,7 @@ import com.example.link.Project.dto.ProjectParticipantsDTO;
 import com.example.link.Project.entity.ProjectParticipants;
 import com.example.link.Project.service.ProjectService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ import java.util.List;
 @Slf4j
 @RequestMapping("/project")
 @RequiredArgsConstructor
+@Tag(name = "Projects", description = "프로젝트 API")
 public class ProjectController {
     private final ProjectService projectService;
 
