@@ -23,10 +23,10 @@ public class Post {
     private String title;
     @Column(columnDefinition = "TEXT")
     private String content;
-    private String createdDate;
+    private LocalDateTime createdDate;
 
     @Builder
-    public Post(int postId, int projectId, int authorId, String title, String content, String createdDate) {
+    public Post(int postId, int projectId, int authorId, String title, String content, LocalDateTime createdDate) {
         this.postId = postId;
         this.projectId = projectId;
         this.authorId = authorId;

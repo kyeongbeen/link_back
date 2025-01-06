@@ -31,4 +31,8 @@ public class PostService {
 
         return postDtos;
     }
+
+    public void write(Post post) {
+        postRepository.save(post);
+    }
 }

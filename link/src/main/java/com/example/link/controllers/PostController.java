@@ -1,12 +1,14 @@
 package com.example.link.controllers;
 
 import com.example.link.dto.PostDto;
+import com.example.link.entities.Post;
 import com.example.link.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -30,6 +32,14 @@ public class PostController {
     @GetMapping("/create")
     public String create() {
         return "board/post_form";
+    }
+
+    @PostMapping("/writeTest")
+    public String writeTest(Post post) {
+        System.out.println("제목: "+ post.getTitle());
+        System.out.println("내용: "+ post.getContent());
+        postService.write(post);
+        return "board/post_list";
     }
 
 }
