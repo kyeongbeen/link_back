@@ -4,7 +4,6 @@ import com.example.link.User.dto.SignupDTO;
 import com.example.link.User.dto.UserDTO;
 import com.example.link.User.entity.User;
 import com.example.link.User.repository.UserRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

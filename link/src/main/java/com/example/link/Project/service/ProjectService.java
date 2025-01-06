@@ -10,13 +10,10 @@ import com.example.link.Project.repository.ProjectParticipantsRepository;
 import com.example.link.Project.repository.ProjectRepository;
 import com.example.link.User.entity.User;
 import com.example.link.User.repository.UserRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

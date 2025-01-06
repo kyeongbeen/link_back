@@ -11,6 +11,7 @@ public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int projectId;
+    @Column(length = 256)
     private String projectName;
 
     @ManyToOne(cascade = CascadeType.REMOVE)
