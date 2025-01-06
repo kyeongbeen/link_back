@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Getter @Setter
+@Getter @Setter @Builder @ToString
 @NoArgsConstructor @AllArgsConstructor
 public class ProjectParticipants {
 
@@ -21,6 +21,5 @@ public class ProjectParticipants {
     @JoinColumn(name = "project_id", nullable = true)
     private Project project;
 
-    @Column
     private String enterDate;
 }

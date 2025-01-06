@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Data
 @Getter @Setter @Builder
-public class ProjectCreateDTO {
-    private int projectLeaderId;
-    private String projectName;
+public class InviteParticipantsDTO {
+    private String email;
+    private int projectId;
 }

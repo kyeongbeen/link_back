@@ -10,4 +10,6 @@ import lombok.Setter;
 public class ProjectDTO {
     private int projectId;
     private String projectName;
+    private int projectLeaderId;
+    private String createDate;
 }

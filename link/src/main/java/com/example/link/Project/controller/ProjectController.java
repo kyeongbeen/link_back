@@ -1,7 +1,10 @@
 package com.example.link.Project.controller;
 
+import com.example.link.Project.dto.InviteParticipantsDTO;
 import com.example.link.Project.dto.ProjectCreateDTO;
 import com.example.link.Project.dto.ProjectDTO;
+import com.example.link.Project.dto.ProjectParticipantsDTO;
+import com.example.link.Project.entity.ProjectParticipants;
 import com.example.link.Project.service.ProjectService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +32,7 @@ public class ProjectController {
     @PostMapping("/new")
     @Operation(summary = "프로젝트 생성")
     public ResponseEntity<ProjectDTO> createProject(@RequestBody ProjectCreateDTO projectCreateDTO) {
-        return new ResponseEntity<>(projectService.createProject(projectCreateDTO.getProjectName()), HttpStatus.OK);
+        return new ResponseEntity<>(projectService.createProject(projectCreateDTO), HttpStatus.OK);
     }
 
     @PatchMapping("/lists")
@@ -44,4 +47,9 @@ public class ProjectController {
         return new ResponseEntity<>(projectService.deleteProject(projectId), HttpStatus.OK);
     }
 
+    @PostMapping("/participants/new")
+    @Operation(summary = "프로젝트에 인원 초대")
+    public ResponseEntity<ProjectParticipantsDTO> inviteParticipants(@RequestBody InviteParticipantsDTO inviteParticipantsDTO) {
+        return new ResponseEntity<>(projectService.inviteParticipants(inviteParticipantsDTO), HttpStatus.OK);
+    }
 }
