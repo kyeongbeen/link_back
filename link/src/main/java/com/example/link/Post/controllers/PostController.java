@@ -2,6 +2,7 @@ package com.example.link.Post.controllers;
 
 import com.example.link.Post.dto.PostDto;
 import com.example.link.Post.entities.Post;
+import com.example.link.Post.form.PostForm;
 import com.example.link.Post.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -17,7 +18,7 @@ public class PostController {
 
     @GetMapping("/list") // 게시물 목록
     public List<PostDto> list(){
-      return postService.getAllPost(); // json 형태로 db의 모든 내용 반환
+        return postService.getAllPost(); // json 형태로 db의 모든 내용 반환
     }
 
     @PostMapping("/create") // 글 작성하기
@@ -27,7 +28,7 @@ public class PostController {
     }
 
     @GetMapping("/detail/{postId}") // 글 상세 보기
-    public  PostDto detail(@PathVariable("postId") Integer postId, Model model) {
+    public PostDto detail(@PathVariable("postId") Integer postId, Model model) {
         System.out.println("상세보기 : " + postId);
         PostDto post = this.postService.getOnePost(postId);
         model.addAttribute("post", post);
@@ -35,11 +36,15 @@ public class PostController {
     }
 
     @PostMapping("/update")  // 글 수정하기
-    public String update(Post post) {
-        return "board/post_update";
+    public PostDto update(@RequestBody PostDto post) {
+        return this.postService.updatePost(post);
     }
-    @PostMapping("/delete") // 글 삭제하기
-    public String delete(Post post) {
-        return "board/post_delete";
+
+    @GetMapping("/delete/{postId}") // 글 삭제하기
+    public List<PostDto> delete(@PathVariable Integer postId) {
+        PostDto postDto = this.postService.getOnePost( postId );
+        this.postService.delete( postDto );
+        return list();
     }
+
 }

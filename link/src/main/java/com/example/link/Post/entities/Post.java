@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -23,10 +24,11 @@ public class Post {
     private String title;
     @Column(columnDefinition = "TEXT")
     private String content;
-    private String createdDate;
+    @CreationTimestamp
+    private LocalDateTime createdDate;
 
     @Builder
-    public Post(int postId, int projectId, int authorId, String title, String content, String createdDate) {
+    public Post(int postId, int projectId, int authorId, String title, String content, LocalDateTime createdDate) {
         this.postId = postId;
         this.projectId = projectId;
         this.authorId = authorId;

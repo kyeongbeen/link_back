@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+
 @Setter
 @Getter
 @ToString
@@ -16,7 +18,7 @@ public class PostDto {
     private int authorId;
     private String title;
     private String content;
-    private String createdDate;
+    private LocalDateTime createdDate;
 
     public Post toEntity() {
         return Post.builder()

@@ -53,4 +53,20 @@ public class PostService {
                     .build();
         }throw new EntityNotFoundException("Post not found with id: " + postId); // 예외 처리
     }
+
+    public PostDto updatePost(PostDto postDto) {
+        Post post=this.postRepository.findById(postDto.getPostId()).get();
+               post.setTitle(postDto.getTitle());
+               post.setContent(postDto.getContent());
+               post.setCreatedDate(postDto.getCreatedDate());
+               post.setAuthorId(postDto.getAuthorId());
+               post.setProjectId(postDto.getProjectId());
+               postRepository.save(post);
+               return postDto;
+
+    }
+
+    public void delete(PostDto postDto) {
+        this.postRepository.delete( postDto.toEntity() );
+    }
 }
