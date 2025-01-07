@@ -10,7 +10,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Data
-@Getter @Setter @Builder
+@Builder
 @Schema(description = "작업 DTO")
 public class TaskDTO {
     @Schema(description = "PK, 자동생성되는 고유값 ")
