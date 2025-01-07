@@ -6,27 +6,19 @@ import com.example.link.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RequestMapping("/post")
-@Controller
+@RestController
 public class PostController {
     @Autowired
     private PostService postService;
 
     @GetMapping("/list")
-    public String list(Model model) {
-        List<PostDto> posts = postService.getAllPost(); // 모든 post의 내용을 dto에 가져오기
-        for (PostDto post : posts) {
-            System.out.println(post.toString());
-        }
-        model.addAttribute("posts", posts); // 게시물 데이터 전달
-        return "board/post_list";
+    public List<PostDto> list(){
+      return postService.getAllPost(); // json 형태로 db의 모든 내용 반환
     }
 
     @GetMapping("/create")
@@ -34,7 +26,7 @@ public class PostController {
         return "board/post_form";
     }
 
-    @PostMapping("/writeTest")
+    @PostMapping("/write")
     public String writeTest(Post post) {
         System.out.println("제목: "+ post.getTitle());
         System.out.println("내용: "+ post.getContent());
