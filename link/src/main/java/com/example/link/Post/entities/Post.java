@@ -1,4 +1,4 @@
-package com.example.link.entities;
+package com.example.link.Post.entities;
 
 import jakarta.persistence.*;
 import lombok.Builder;

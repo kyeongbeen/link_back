@@ -1,7 +1,6 @@
-package com.example.link.dto;
+package com.example.link.Post.dto;
 
-import com.example.link.entities.Post;
-import jakarta.persistence.Column;
+import com.example.link.Post.entities.Post;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

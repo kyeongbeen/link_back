@@ -1,8 +1,8 @@
-package com.example.link.services;
+package com.example.link.Post.services;
 
-import com.example.link.dto.PostDto;
-import com.example.link.entities.Post;
-import com.example.link.repositories.PostRepository;
+import com.example.link.Post.dto.PostDto;
+import com.example.link.Post.entities.Post;
+import com.example.link.Post.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
