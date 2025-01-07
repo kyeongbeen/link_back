@@ -3,6 +3,7 @@ package com.example.link.Post.services;
 import com.example.link.Post.dto.PostDto;
 import com.example.link.Post.entities.Post;
 import com.example.link.Post.repositories.PostRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,12 +45,12 @@ public class PostService {
             Post post = oPost.get(); // Post 획득
             return PostDto.builder()
                     .postId(post.getPostId())
+                    .projectId(post.getProjectId())
+                    .authorId(post.getAuthorId())
                     .title(post.getTitle())
                     .content(post.getContent())
                     .createdDate(post.getCreatedDate())
-                    //.reviews(post.getReviews())
                     .build();
-        }
-        return null;
+        }throw new EntityNotFoundException("Post not found with id: " + postId); // 예외 처리
     }
 }

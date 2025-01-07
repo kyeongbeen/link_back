@@ -20,24 +20,18 @@ public class PostController {
       return postService.getAllPost(); // json 형태로 db의 모든 내용 반환
     }
 
-    @GetMapping("/create") // 글 작성하기
-    public String create() {
-        return "board/post_form";
+    @PostMapping("/create") // 글 작성하기
+    public List<PostDto> create(Post post) {
+        postService.write(post);
+        return postService.getAllPost();
     }
 
-    @PostMapping("/write")
-    public String writeTest(Post post) {
-        System.out.println("제목: "+ post.getTitle());
-        System.out.println("내용: "+ post.getContent());
-        postService.write(post);
-        return "board/post_list";
-    }
-    @PostMapping("/detail/{postId}") // 글 상세 보기
-    public String detail(@PathVariable("postId") Integer postId, Model model) {
+    @GetMapping("/detail/{postId}") // 글 상세 보기
+    public  PostDto detail(@PathVariable("postId") Integer postId, Model model) {
         System.out.println("상세보기 : " + postId);
         PostDto post = this.postService.getOnePost(postId);
         model.addAttribute("post", post);
-        return "board/post_detail";
+        return post;
     }
 
     @PostMapping("/update")  // 글 수정하기
