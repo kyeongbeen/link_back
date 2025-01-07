@@ -22,7 +22,7 @@ public class PostController {
     }
 
     @PostMapping("/create") // 글 작성하기
-    public List<PostDto> create(Post post) {
+    public List<PostDto> create(@RequestBody Post post) {
         postService.write(post);
         return postService.getAllPost();
     }
@@ -35,9 +35,11 @@ public class PostController {
         return post;
     }
 
-    @PostMapping("/update")  // 글 수정하기
-    public PostDto update(@RequestBody PostDto post) {
-        return this.postService.updatePost(post);
+    @PostMapping("/update/{postId}")  // 글 수정하기
+    public PostDto update(@PathVariable Integer postId,
+                          @RequestParam(required = false) String title,
+                          @RequestParam(required = false) String content) {
+        return this.postService.updatePost(postId, title, content);
     }
 
     @GetMapping("/delete/{postId}") // 글 삭제하기

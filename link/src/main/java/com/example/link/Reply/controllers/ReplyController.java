@@ -1,5 +1,8 @@
+/*
 package com.example.link.Reply.controllers;
 
+import com.example.link.Post.dto.PostDto;
+import com.example.link.Reply.dto.ReplyDto;
 import com.example.link.Reply.entity.Reply;
 import com.example.link.Reply.services.ReplyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,22 +21,28 @@ public class ReplyController {
 
     @GetMapping("/list")
     public List<Reply> list() {
-        return null;
+        return replyService.getAllRelpy();
     }
 
     @GetMapping("/create")
     public String create() {
-        return null;
+        replyService.write(reply);
+        return replyService.getAllReply();
     }
 
     @GetMapping("/update")
     public String update() {
-        return null;
+        return replyService.updateReply();
     }
 
+/**
     @GetMapping("/delete")
-    public String delete() {
-        return null;
+    public List<Reply> delete() {
+        ReplyDto replyDto = this.ReplyService.getOneReply( ReplyId );
+        this.ReplyService.delete(replyDto);
+        return list();
     }
+
 
 }
+*/

@@ -3,10 +3,12 @@ package com.example.link.Post.services;
 import com.example.link.Post.dto.PostDto;
 import com.example.link.Post.entities.Post;
 import com.example.link.Post.repositories.PostRepository;
+import com.example.link.Project.entity.Project;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -35,7 +37,13 @@ public class PostService {
     }
 
     public void write(Post post) {
-        postRepository.save(post);
+        Post post1 = Post.builder()
+                .title(post.getTitle())
+                .content(post.getContent())
+                .authorId(post.getAuthorId())
+                .projectId(post.getProjectId())
+                .build();
+        postRepository.save(post1);
     }
 
     public PostDto getOnePost(Integer postId) {
@@ -54,16 +62,17 @@ public class PostService {
         }throw new EntityNotFoundException("Post not found with id: " + postId); // 예외 처리
     }
 
-    public PostDto updatePost(PostDto postDto) {
-        Post post=this.postRepository.findById(postDto.getPostId()).get();
-               post.setTitle(postDto.getTitle());
-               post.setContent(postDto.getContent());
-               post.setCreatedDate(postDto.getCreatedDate());
-               post.setAuthorId(postDto.getAuthorId());
-               post.setProjectId(postDto.getProjectId());
-               postRepository.save(post);
-               return postDto;
-
+    public PostDto updatePost(Integer postId, String title, String content) {
+        Post post = postRepository.findById(postId).orElseThrow(() -> new RuntimeException("Post not found"));
+        if (title != null && !title.isEmpty()) {
+            post.setTitle(title);
+        }
+        if (content != null && !content.isEmpty()) {
+            post.setContent(content);
+        }
+        post.setCreatedDate(LocalDateTime.now()); // 수정된 날짜로 업데이트
+        postRepository.save(post);
+        return getOnePost(postId);
     }
 
     public void delete(PostDto postDto) {
