@@ -1,5 +1,7 @@
 package com.example.link.Reply.dto;
 
+import com.example.link.Post.entities.Post;
+import com.example.link.Project.entity.Project;
 import com.example.link.Reply.entity.Reply;
 import lombok.Builder;
 import lombok.Getter;

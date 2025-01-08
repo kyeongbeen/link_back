@@ -4,7 +4,6 @@ import com.example.link.Post.dto.PostDto;
 import com.example.link.Post.entities.Post;
 import com.example.link.Post.form.PostForm;
 import com.example.link.Post.services.PostService;
-import com.example.link.Reply.dto.ReplyDto;
 import com.example.link.Reply.entity.Reply;
 import com.example.link.Reply.services.ReplyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +38,7 @@ public class PostController {
     public ResponseEntity<Map<String, Object>> detail(@PathVariable("postId") Integer postId) {
         System.out.println("상세보기 : " + postId);
         PostDto post = this.postService.getOnePost(postId);
-        ReplyDto replies = replyService.getReplies(postId); // 해당 글에 달린 댓글 리스트 출력
+        List<Reply> replies = replyService.getReplies(postId); // 해당 글에 달린 댓글 리스트 가져오기
 
         Map<String, Object> response = new HashMap<>();
         response.put("post", post);

@@ -47,8 +47,8 @@ public class PostService {
     }
 
     public PostDto getOnePost(Integer postId) {
-        Optional<Post> oPost = this.postRepository.findById( postId );
-        if( oPost.isPresent() ){ // 데이터가 존재하면
+        Optional<Post> oPost = this.postRepository.findById(postId);
+        if (oPost.isPresent()) { // 데이터가 존재하면
             // Post 엔티티 -> PostDto로 변환 반환
             Post post = oPost.get(); // Post 획득
             return PostDto.builder()
@@ -59,7 +59,8 @@ public class PostService {
                     .content(post.getContent())
                     .createdDate(post.getCreatedDate())
                     .build();
-        }throw new EntityNotFoundException("Post not found with id: " + postId); // 예외 처리
+        }
+        throw new EntityNotFoundException("Post not found with id: " + postId); // 예외 처리
     }
 
     public PostDto updatePost(Integer postId, String title, String content) {
@@ -76,6 +77,8 @@ public class PostService {
     }
 
     public void delete(PostDto postDto) {
-        this.postRepository.delete( postDto.toEntity() );
+        this.postRepository.delete(postDto.toEntity());
     }
+
+
 }

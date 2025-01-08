@@ -24,10 +24,10 @@ public class ReplyController {
     }
 
 
-    @PostMapping("/detail/{postId}")
-    public ResponseEntity<ReplyDto> createReply(@PathVariable("postId") Integer postId, @RequestBody Reply reply) {
+    @PostMapping("/create/{postId}")
+    public ResponseEntity<List<Reply>> createReply(@PathVariable("postId") Integer postId, @RequestBody Reply reply) {
         replyService.write(postId, reply);
-        ReplyDto replies = replyService.getReplies(postId);
+        List<Reply> replies = replyService.getReplies(postId);
         return ResponseEntity.ok(replies);
     }
 /*
@@ -37,13 +37,12 @@ public class ReplyController {
     }
     */
 
-    /**
+
     @GetMapping("/delete")
     public List<Reply> delete() {
         ReplyDto replyDto = this.ReplyService.getOneReply( ReplyId );
         this.ReplyService.delete(replyDto);
         return list();
     }
-    */
 
 }

@@ -1,5 +1,10 @@
 package com.example.link.Reply.services;
 
+import com.example.link.Post.dto.PostDto;
+import com.example.link.Post.entities.Post;
+import com.example.link.Post.services.PostService;
+import com.example.link.Project.entity.Project;
+import com.example.link.Project.service.ProjectService;
 import com.example.link.Reply.dto.ReplyDto;
 import com.example.link.Reply.entity.Reply;
 import com.example.link.Reply.repositories.ReplyRepository;
@@ -13,6 +18,8 @@ import java.util.List;
 public class ReplyService {
     @Autowired
     private ReplyRepository replyRepository;
+    @Autowired
+    private PostService postService;
 
     public List<Reply> getAllRelpy() {
         List<Reply> replys= replyRepository.findAll();
@@ -32,14 +39,18 @@ public class ReplyService {
     }
 
     public void write(Integer postId, Reply reply) {
+        PostDto postDto = postService.getOnePost(postId);
+        Integer projectId = postDto.getProjectId(); // postDto에서  projectid를 가져옴
         Reply reply1 = Reply.builder()
+                .postId(postId)
+                .projectId(projectId)
                 .content(reply.getContent())
                 .authorName(reply.getAuthorName())
                 .build();
        replyRepository.save(reply1);
     }
 
-    public ReplyDto getReplies(Integer postId) {
+    public List<Reply> getReplies(Integer postId) {
         return replyRepository.findByPostId(postId);
     }
     /*
