@@ -1,5 +1,6 @@
 package com.example.link.Reply.entity;
 
+import com.example.link.Post.entities.Post;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
