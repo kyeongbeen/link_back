@@ -36,12 +36,11 @@ public class ReplyController {
         List<Reply> replies = replyService.getReplies(postId);
         return ResponseEntity.ok(replies);
     }
-/*
-    @GetMapping("/update") // 댓글 수정하기
-    public String update() {
-        return replyService.updateReply();
+
+    @PostMapping("/update/{replyId}") // 댓글 수정하기
+    public ReplyDto update(@PathVariable int replyId, @RequestParam(required = false) String content) {
+        return replyService.updateReply(replyId, content);
     }
-    */
 
     @PostMapping("/delete/{replyId}") // 댓글 삭제하기
     public ResponseEntity<Map<String, Object>> delete(@PathVariable Integer replyId) {

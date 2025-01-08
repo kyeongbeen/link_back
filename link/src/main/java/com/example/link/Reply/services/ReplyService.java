@@ -11,6 +11,7 @@ import com.example.link.Reply.repositories.ReplyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -59,7 +60,7 @@ public class ReplyService {
         Optional<Reply> reply1 = this.replyRepository.findById(replyId);
         if( reply1.isPresent() ){ // 리뷰가 존재하면
             Reply reply = reply1.get();
-            return ReplyDto.builder()
+            return ReplyDto.builder()  // 댓글을 replydto로 변환하여 반환(엔티티 -> dto)
                     .replyId(reply.getReplyId())
                     .postId(reply.getPostId())
                     .projectId(reply.getProjectId())
@@ -71,12 +72,16 @@ public class ReplyService {
         return null;
     }
 
+    public ReplyDto updateReply(Integer replyId, String content) {
+        Reply reply = replyRepository.findById(replyId).get();
+
+        reply.setContent(content);
+        reply.setCreatedDate(LocalDateTime.now()); // 수정된 날짜로 업데이트
+        replyRepository.save(reply);
+        return getOneReply(replyId);
+    }
     public void delete(ReplyDto replyDto) {
         this.replyRepository.delete(replyDto.toEntity());
     }
-    /*
-    public String updateReply() {
 
-    }
-    */
 }
