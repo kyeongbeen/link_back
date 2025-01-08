@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReplyService {
@@ -52,6 +53,26 @@ public class ReplyService {
 
     public List<Reply> getReplies(Integer postId) {
         return replyRepository.findByPostId(postId);
+    }
+
+    public ReplyDto getOneReply(Integer replyId) {
+        Optional<Reply> reply1 = this.replyRepository.findById(replyId);
+        if( reply1.isPresent() ){ // 리뷰가 존재하면
+            Reply reply = reply1.get();
+            return ReplyDto.builder()
+                    .replyId(reply.getReplyId())
+                    .postId(reply.getPostId())
+                    .projectId(reply.getProjectId())
+                    .content(reply.getContent())
+                    .authorName(reply.getAuthorName())
+                    .createdDate(reply.getCreatedDate())
+                    .build();
+        }
+        return null;
+    }
+
+    public void delete(ReplyDto replyDto) {
+        this.replyRepository.delete(replyDto.toEntity());
     }
     /*
     public String updateReply() {

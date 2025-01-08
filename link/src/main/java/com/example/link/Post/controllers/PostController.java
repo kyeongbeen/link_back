@@ -25,7 +25,7 @@ public class PostController {
 
     @GetMapping("/list") // 게시물 목록
     public List<PostDto> list(){
-        return postService.getAllPost(); // json 형태로 db의 모든 내용 반환
+        return postService.getAllPost(); // json 형태로 db의 모든 글 반환
     }
 
     @PostMapping("/create") // 글 작성하기
@@ -34,7 +34,7 @@ public class PostController {
         return postService.getAllPost();
     }
 
-    @GetMapping("/detail/{postId}") // 글 상세 보기
+    @GetMapping("/detail/{postId}") // 글 상세 보기 + 글에 달린 댓글 보기
     public ResponseEntity<Map<String, Object>> detail(@PathVariable("postId") Integer postId) {
         System.out.println("상세보기 : " + postId);
         PostDto post = this.postService.getOnePost(postId);
