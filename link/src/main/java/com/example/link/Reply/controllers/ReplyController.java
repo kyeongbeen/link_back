@@ -1,4 +1,3 @@
-
 package com.example.link.Reply.controllers;
 
 import com.example.link.Post.dto.PostDto;
@@ -28,7 +27,6 @@ public class ReplyController {
     public List<Reply> list() {
         return replyService.getAllRelpy();
     }
-
 
     @PostMapping("/create/{postId}") // 댓글 생성하기
     public ResponseEntity<List<Reply>> createReply(@PathVariable("postId") Integer postId, @RequestBody Reply reply) {

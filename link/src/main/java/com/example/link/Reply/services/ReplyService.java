@@ -2,6 +2,7 @@ package com.example.link.Reply.services;
 
 import com.example.link.Post.dto.PostDto;
 import com.example.link.Post.entities.Post;
+import com.example.link.Post.repositories.PostRepository;
 import com.example.link.Post.services.PostService;
 import com.example.link.Project.entity.Project;
 import com.example.link.Project.service.ProjectService;
@@ -20,8 +21,9 @@ import java.util.Optional;
 public class ReplyService {
     @Autowired
     private ReplyRepository replyRepository;
+
     @Autowired
-    private PostService postService;
+    private PostRepository postRepository;
 
     public List<Reply> getAllRelpy() {
         List<Reply> replys= replyRepository.findAll();
@@ -41,7 +43,7 @@ public class ReplyService {
     }
 
     public void write(Integer postId, Reply reply) {
-        PostDto postDto = postService.getOnePost(postId);
+        PostDto postDto = postRepository.getPostsByPostId(postId);
         Integer projectId = postDto.getProjectId(); // postDto에서  projectid를 가져옴
         Reply reply1 = Reply.builder()
                 .postId(postId)

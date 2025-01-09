@@ -4,20 +4,25 @@ import com.example.link.Post.dto.PostDto;
 import com.example.link.Post.entities.Post;
 import com.example.link.Post.repositories.PostRepository;
 import com.example.link.Project.entity.Project;
+import com.example.link.Reply.entity.Reply;
+import com.example.link.Reply.services.ReplyService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class PostService {
 
     @Autowired
     private PostRepository postRepository;
+    @Autowired
+    private ReplyService replyService;
+
+
 
     public List<PostDto> getAllPost() {
         List<Post> posts = postRepository.findAll();
@@ -36,14 +41,15 @@ public class PostService {
         return postDtos;
     }
 
-    public void write(Post post) {
+    public List<PostDto> write(PostDto postDto) {
         Post post1 = Post.builder()
-                .title(post.getTitle())
-                .content(post.getContent())
-                .authorId(post.getAuthorId())
-                .projectId(post.getProjectId())
+                .title(postDto.getTitle())
+                .content(postDto.getContent())
+                .authorId(postDto.getAuthorId())
+                .projectId(postDto.getProjectId())
                 .build();
         postRepository.save(post1);
+        return getAllPost();
     }
 
     public PostDto getOnePost(Integer postId) {
@@ -63,6 +69,15 @@ public class PostService {
         throw new EntityNotFoundException("Post not found with id: " + postId); // 예외 처리
     }
 
+    public ResponseEntity<Map<String, Object>> detail(Integer postId){
+        PostDto post = getOnePost(postId);
+        List<Reply> replies = replyService.getReplies(postId); // 해당 글에 달린 댓글 리스트 가져오기
+        Map<String, Object> response = new HashMap<>();
+        response.put("post", post);
+        response.put("replies", replies);
+        return ResponseEntity.ok(response);
+    }
+
     public PostDto updatePost(Integer postId, String title, String content) {
         Post post = postRepository.findById(postId).orElseThrow(() -> new RuntimeException("Post not found"));
         if (title != null && !title.isEmpty()) {
@@ -76,9 +91,10 @@ public class PostService {
         return getOnePost(postId);
     }
 
-    public void delete(PostDto postDto) {
-        this.postRepository.delete(postDto.toEntity());
-    }
+    public String delete(Integer postId) {
+        postRepository.deleteById(postId);
+        return postId+"번 글이 삭제되었습니다.";
 
+    }
 
 }
