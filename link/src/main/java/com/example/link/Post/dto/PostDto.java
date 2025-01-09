@@ -1,6 +1,7 @@
 package com.example.link.Post.dto;
 
 import com.example.link.Post.entity.Post;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 @Getter
 @ToString
 @Builder
+@Schema(description = "게시물 DTO")
 public class PostDto {
     private int postId;
     private int projectId;

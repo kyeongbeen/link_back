@@ -1,6 +1,7 @@
 package com.example.link.Reply.dto;
 
 import com.example.link.Reply.entity.Reply;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 @Getter
 @ToString
 @Builder
+@Schema(description = "댓글 DTO")
 public class ReplyDto {
         private int replyId;
         private int postId;

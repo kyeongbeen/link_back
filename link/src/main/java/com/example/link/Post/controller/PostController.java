@@ -4,6 +4,8 @@ import com.example.link.Post.dto.PostDto;
 import com.example.link.Post.service.PostService;
 import com.example.link.Reply.service.ReplyService;
 import jakarta.validation.Valid;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
+
+@Tag(name = "Posts", description = "게시물 API")
 @RequestMapping("/post")
 @RestController
 public class PostController {
@@ -21,27 +25,32 @@ public class PostController {
     @Autowired
     private ReplyService replyService;
 
-    @GetMapping("/list") // 게시물 목록
+    @GetMapping("/list") 
+    @Operation(summary = "전체 게시물 조회")
     public List<PostDto> list(){
         return postService.getAllPost();
     }
 
-    @PostMapping("/create") // 글 작성하기
+    @PostMapping("/create")
+    @Operation(summary = "게시물 생성")
     public List<PostDto> create(@Valid @RequestBody PostDto postDto) {
         return postService.write(postDto); // HTTP 200 OK로 결과 반환
     }
 
-    @GetMapping("/detail/{postId}") // 글 상세 보기 + 글에 달린 댓글 보기
+    @GetMapping("/detail/{postId}")
+    @Operation(summary = "게시물 상세")
     public ResponseEntity<Map<String, Object>> detail(@PathVariable("postId") Integer postId) {
         return postService.detail(postId);
     }
 
-    @PostMapping("/update/{postId}")  // 글 수정하기
+    @PatchMapping("/update/{postId}")
+    @Operation(summary = "게시물 수정")
     public PostDto update(@PathVariable Integer postId, @RequestParam(required = false) String title, @RequestParam(required = false) String content) {
         return this.postService.updatePost(postId, title, content);
     }
 
-    @GetMapping("/delete/{postId}") // 글 삭제하기
+    @DeleteMapping("/delete/{postId}")
+    @Operation(summary = "게시물 삭제")
     public String delete(@PathVariable Integer postId) {
         return postService.delete(postId);
     }
