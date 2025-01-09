@@ -1,6 +1,7 @@
 package com.example.link.Reply.controllers;
 
 import com.example.link.Post.dto.PostDto;
+import com.example.link.Post.repositories.PostRepository;
 import com.example.link.Post.services.PostService;
 import com.example.link.Reply.dto.ReplyDto;
 import com.example.link.Reply.entity.Reply;
@@ -21,7 +22,7 @@ public class ReplyController {
     private ReplyService replyService;
 
     @Autowired
-    private PostService postService;
+    private PostRepository postRepository;
 
     @GetMapping("/list") // 전체 댓글 출력
     public List<Reply> list() {
@@ -30,9 +31,7 @@ public class ReplyController {
 
     @PostMapping("/create/{postId}") // 댓글 생성하기
     public ResponseEntity<List<Reply>> createReply(@PathVariable("postId") Integer postId, @RequestBody Reply reply) {
-        replyService.write(postId, reply);
-        List<Reply> replies = replyService.getReplies(postId);
-        return ResponseEntity.ok(replies);
+        return replyService.write(postId, reply);
     }
 
     @PostMapping("/update/{replyId}") // 댓글 수정하기
@@ -41,20 +40,8 @@ public class ReplyController {
     }
 
     @PostMapping("/delete/{replyId}") // 댓글 삭제하기
-    public ResponseEntity<Map<String, Object>> delete(@PathVariable Integer replyId) {
-        ReplyDto replyDto = this.replyService.getOneReply(replyId);
-
-        this.replyService.delete(replyDto);
-
-        Integer postId = replyDto.getPostId();
-        PostDto post = this.postService.getOnePost(postId);
-        List<Reply> replies = replyService.getReplies(replyId);
-
-        Map<String, Object> response = new HashMap<>();
-        response.put("post", post);
-        response.put("replies", replies);
-
-        return ResponseEntity.ok(response);
+    public String delete(@PathVariable Integer replyId) {
+        return replyService.delete(replyId);
     }
 
 }

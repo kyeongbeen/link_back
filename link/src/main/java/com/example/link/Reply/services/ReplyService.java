@@ -10,6 +10,7 @@ import com.example.link.Reply.dto.ReplyDto;
 import com.example.link.Reply.entity.Reply;
 import com.example.link.Reply.repositories.ReplyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -26,9 +27,9 @@ public class ReplyService {
     private PostRepository postRepository;
 
     public List<Reply> getAllRelpy() {
-        List<Reply> replys= replyRepository.findAll();
+        List<Reply> replies= replyRepository.findAll();
         List<ReplyDto> replyDtos= new ArrayList<>();
-        for (Reply reply : replys) {
+        for (Reply reply : replies) {
             replyDtos.add(ReplyDto.builder()
                     .replyId(reply.getReplyId())
                     .postId(reply.getPostId())
@@ -37,12 +38,11 @@ public class ReplyService {
                     .authorName(reply.getAuthorName())
                     .createdDate(reply.getCreatedDate())
                     .build());
-
         }
-        return replys;
+        return replies;
     }
 
-    public void write(Integer postId, Reply reply) {
+    public ResponseEntity<List<Reply>> write(Integer postId, Reply reply) {
         PostDto postDto = postRepository.getPostsByPostId(postId);
         Integer projectId = postDto.getProjectId(); // postDto에서  projectid를 가져옴
         Reply reply1 = Reply.builder()
@@ -51,7 +51,9 @@ public class ReplyService {
                 .content(reply.getContent())
                 .authorName(reply.getAuthorName())
                 .build();
-       replyRepository.save(reply1);
+        replyRepository.save(reply1);
+        List<Reply> replies= getReplies(postId);
+        return ResponseEntity.ok(replies);
     }
 
     public List<Reply> getReplies(Integer postId) {
@@ -80,10 +82,13 @@ public class ReplyService {
         reply.setContent(content);
         reply.setCreatedDate(LocalDateTime.now()); // 수정된 날짜로 업데이트
         replyRepository.save(reply);
+
         return getOneReply(replyId);
     }
-    public void delete(ReplyDto replyDto) {
-        this.replyRepository.delete(replyDto.toEntity());
+
+    public String delete(Integer replyId) {
+        replyRepository.deleteById(replyId);
+        return replyId +"번 댓글이 삭제되었습니다.";
     }
 
 }
