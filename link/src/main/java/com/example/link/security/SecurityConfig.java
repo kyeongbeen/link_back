@@ -14,22 +14,22 @@ import java.util.List;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                .requestMatchers("*").permitAll().and()
-                .csrf().disable()
-                .cors(c -> {
-                    CorsConfigurationSource source = request -> {
-                        CorsConfiguration config = new CorsConfiguration();
-                        config.setAllowedOrigins(List.of("*"));
-                        config.setAllowedMethods(List.of("*"));
-                        return config;
-                    };
-                    c.configurationSource(source);
-                });
-
-        return http.build();
-    }
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        http
+//                .authorizeRequests()
+//                .requestMatchers("*").permitAll().and()
+//                .csrf().disable()
+//                .cors(c -> {
+//                    CorsConfigurationSource source = request -> {
+//                        CorsConfiguration config = new CorsConfiguration();
+//                        config.setAllowedOrigins(List.of("*"));
+//                        config.setAllowedMethods(List.of("*"));
+//                        return config;
+//                    };
+//                    c.configurationSource(source);
+//                });
+//
+//        return http.build();
+//    }
 }
