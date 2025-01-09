@@ -1,19 +1,16 @@
-package com.example.link.Reply.controllers;
+package com.example.link.Reply.controller;
 
-import com.example.link.Post.dto.PostDto;
-import com.example.link.Post.repositories.PostRepository;
-import com.example.link.Post.services.PostService;
+import com.example.link.Post.repository.PostRepository;
 import com.example.link.Reply.dto.ReplyDto;
 import com.example.link.Reply.entity.Reply;
-import com.example.link.Reply.services.ReplyService;
+import com.example.link.Reply.service.ReplyService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RequestMapping("/reply")
 @RestController

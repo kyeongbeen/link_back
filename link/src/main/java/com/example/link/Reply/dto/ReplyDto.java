@@ -1,8 +1,8 @@
 package com.example.link.Reply.dto;
 
-import com.example.link.Post.entities.Post;
-import com.example.link.Project.entity.Project;
 import com.example.link.Reply.entity.Reply;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +18,7 @@ public class ReplyDto {
         private int replyId;
         private int postId;
         private int projectId;
+
         private String content;
         private String authorName;
         private LocalDateTime createdDate;

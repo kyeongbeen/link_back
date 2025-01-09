@@ -1,6 +1,7 @@
 package com.example.link.Post.dto;
 
-import com.example.link.Post.entities.Post;
+import com.example.link.Post.entity.Post;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

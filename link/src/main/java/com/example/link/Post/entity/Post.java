@@ -1,4 +1,4 @@
-package com.example.link.Post.entities;
+package com.example.link.Post.entity;
 
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -19,9 +19,9 @@ public class Post {
     private int postId;
     private int projectId;
     private int authorId;
-    @Column(length = 256)
+    @Column(length = 256, nullable = false)
     private String title;
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
     @CreationTimestamp
     private LocalDateTime createdDate;

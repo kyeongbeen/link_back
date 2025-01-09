@@ -1,6 +1,5 @@
-package com.example.link.Reply.repositories;
+package com.example.link.Reply.repository;
 
-import com.example.link.Reply.dto.ReplyDto;
 import com.example.link.Reply.entity.Reply;
 import org.springframework.data.jpa.repository.JpaRepository;
 

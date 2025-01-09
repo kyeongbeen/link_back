@@ -1,18 +1,15 @@
-package com.example.link.Post.controllers;
+package com.example.link.Post.controller;
 
 import com.example.link.Post.dto.PostDto;
-import com.example.link.Post.entities.Post;
-import com.example.link.Post.form.PostForm;
-import com.example.link.Post.repositories.PostRepository;
-import com.example.link.Post.services.PostService;
-import com.example.link.Reply.entity.Reply;
-import com.example.link.Reply.services.ReplyService;
+import com.example.link.Post.service.PostService;
+import com.example.link.Reply.service.ReplyService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,8 +27,8 @@ public class PostController {
     }
 
     @PostMapping("/create") // 글 작성하기
-    public List<PostDto> create(@RequestBody PostDto postDto) {
-        return postService.write(postDto);
+    public List<PostDto> create(@Valid @RequestBody PostDto postDto) {
+        return postService.write(postDto); // HTTP 200 OK로 결과 반환
     }
 
     @GetMapping("/detail/{postId}") // 글 상세 보기 + 글에 달린 댓글 보기

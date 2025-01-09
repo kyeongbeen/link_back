@@ -1,7 +1,5 @@
 package com.example.link.Reply.entity;
 
-import com.example.link.Post.entities.Post;
-import com.example.link.Project.entity.Project;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -18,8 +16,9 @@ public class Reply {
     private int replyId;
     private int postId;
     private int projectId;
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
+    @Column(nullable = false)
     private String authorName;
     @CreationTimestamp
     private LocalDateTime createdDate;

@@ -1,11 +1,10 @@
-package com.example.link.Post.services;
+package com.example.link.Post.service;
 
 import com.example.link.Post.dto.PostDto;
-import com.example.link.Post.entities.Post;
-import com.example.link.Post.repositories.PostRepository;
-import com.example.link.Project.entity.Project;
+import com.example.link.Post.entity.Post;
+import com.example.link.Post.repository.PostRepository;
 import com.example.link.Reply.entity.Reply;
-import com.example.link.Reply.services.ReplyService;
+import com.example.link.Reply.service.ReplyService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

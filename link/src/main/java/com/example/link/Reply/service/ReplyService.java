@@ -1,22 +1,23 @@
-package com.example.link.Reply.services;
+package com.example.link.Reply.service;
 
 import com.example.link.Post.dto.PostDto;
-import com.example.link.Post.entities.Post;
-import com.example.link.Post.repositories.PostRepository;
-import com.example.link.Post.services.PostService;
-import com.example.link.Project.entity.Project;
-import com.example.link.Project.service.ProjectService;
+import com.example.link.Post.repository.PostRepository;
 import com.example.link.Reply.dto.ReplyDto;
 import com.example.link.Reply.entity.Reply;
-import com.example.link.Reply.repositories.ReplyRepository;
+import com.example.link.Reply.repository.ReplyRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ReplyService {
