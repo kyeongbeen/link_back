@@ -5,6 +5,8 @@ import com.example.link.Project.repository.ProjectRepository;
 import com.example.link.Task.dto.TaskDTO;
 import com.example.link.Task.entity.Task;
 import com.example.link.Task.repository.TaskRepository;
+import com.example.link.User.entity.User;
+import com.example.link.User.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,24 +15,31 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class TaskService {
+
     private final ProjectRepository projectRepository;
     private final TaskRepository taskRepository;
+    private final UserRepository userRepository;
 
     /** project_id 에 해당하는 모든 작업을 조회 */
     public List<TaskDTO> getLists(int projectId) {
         List<Task> taskLists = taskRepository.getTasksByProject_ProjectId(projectId);
         List<TaskDTO> taskDTOList = new ArrayList<>();
         for (Task task : taskLists) {
+            String userName;
+            if (task.getAssignedUser() == 0) userName = "없음";
+            else userName = userRepository.findById(task.getAssignedUser()).get().getUserName();
             taskDTOList.add(
                     TaskDTO.builder()
                             .taskId(task.getTaskId())
                             .projectId(projectId)
                             .assignedUser(task.getAssignedUser())
+                            .assignedUserName(userName)
                             .title(task.getTitle())
                             .content(task.getContent())
                             .taskPriority(task.getTaskPriority())

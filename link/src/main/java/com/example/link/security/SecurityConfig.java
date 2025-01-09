@@ -25,6 +25,8 @@ public class SecurityConfig {
                         CorsConfiguration config = new CorsConfiguration();
                         config.setAllowedOrigins(List.of("*"));
                         config.setAllowedMethods(List.of("*"));
+                        config.setAllowedOrigins(List.of("http://localhost:3000")); // 프론트엔드 도메인 허용
+                        config.setAllowedHeaders(List.of("*")); // 모든 헤더 허용
                         return config;
                     };
                     c.configurationSource(source);
