@@ -41,5 +41,8 @@
 		- 작업상태, 우선순위, 담당자별 작업들을 개수별로 조회할 수 있는 APi를 구현했습니다.
 
 ## Build
-https://velog.io/@seung7152/Spring-Boot-React-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%97%B0%EB%8F%99
-위의 글 참고하여 빌드 진행
+https://velog.io/@seung7152/Spring-Boot-React-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%97%B0%EB%8F%99 
+	- 위의 글 참고하여 빌드 진행했습니다.
+ 	- npm install http-proxy-middleware
+  	- link-back에서 build.gradle 주석 해제/ link-front에서 setupTests.js 주석 해제
+   	- .\gradlew build 실행
