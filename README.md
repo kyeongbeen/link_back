@@ -30,11 +30,11 @@
 
 4. 게시판, 댓글
    - 게시판: 게시물 생성, 수정, 삭제, 상세 보기, 조회 구현 완료
-     	- createdDate 타입을 String에서 LocalDateTime으로 변경했습니다.
-     	- 게시물 상세 보기에서 해당 글에 달린 댓글들 확인 가능합니다.
+   - createdDate 타입을 String에서 LocalDateTime으로 변경했습니다.
+   - 게시물 상세 보기에서 해당 글에 달린 댓글들 확인 가능합니다.
 
-   - 댓글: 생성, 수정, 삭제, 조회 구현 완료
-     	- Reply 테이블에서 authorName의 타입이 int로 되어 있는데 String으로 변경했습니다.
+	- 댓글: 생성, 수정, 삭제, 조회 구현 완료
+		- Reply 테이블에서 authorName의 타입이 int로 되어 있는데 String으로 변경했습니다.
 
 6. 대시보드
 	- 대시보드에서 볼 수 있는 정보를 구현
@@ -42,7 +42,8 @@
 
 ## Build
 https://velog.io/@seung7152/Spring-Boot-React-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%97%B0%EB%8F%99
-참고하여 리액트와 스프링부트를 연동
 
-
-	
+	- 위의 글 참고하여 빌드 진행했습니다.	
+		- npm install http-proxy-middleware
+		- link-back에서 build.gradle 주석 해제/ link-front에서 setupTests.js 주석 해제
+		- .\gradlew build 실행
