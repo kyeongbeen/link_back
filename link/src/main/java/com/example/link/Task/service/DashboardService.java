@@ -6,15 +6,12 @@ import com.example.link.Task.dto.TaskFromStatusDTO;
 import com.example.link.Task.entity.Task;
 import com.example.link.Task.repository.TaskRepository;
 import com.example.link.User.repository.UserRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @Slf4j

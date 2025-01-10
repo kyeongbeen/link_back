@@ -1,6 +1,7 @@
 package com.example.link.User.controller;
 
 
+import com.example.link.User.dto.LoginDTO;
 import com.example.link.User.dto.SignupDTO;
 import com.example.link.User.dto.UserDTO;
 import com.example.link.User.dto.UserListDTO;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 
 @RestController
 @Slf4j
@@ -34,5 +34,14 @@ public class UserController {
     public ResponseEntity<UserDTO> signup(@RequestBody SignupDTO signupDTO) {
         return new ResponseEntity<>(userService.signup(signupDTO), HttpStatus.OK);
     }
+
+    @PatchMapping("/logout")
+    public ResponseEntity<String> logout(@RequestParam String email) {
+        return new ResponseEntity<>(userService.logout(email), HttpStatus.ACCEPTED);
+    }
+
+    @PostMapping("/login")
+    public void login(@RequestBody LoginDTO loginDTO) {}
+
 
 }

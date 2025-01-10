@@ -54,7 +54,9 @@ public class ProjectService {
      *  list 로 return
      */
     public List<ProjectDTO> getLists(Integer userId) {
+//        List<Project> projectEntityList = projectRepository.findAllByUser_UserId(userId);
         List<Project> projectEntityList = projectRepository.findAllByUser_UserId(userId);
+
         List<ProjectDTO> projectDTOList = new ArrayList<>();
         log.info(projectEntityList.toString());
         for (Project project : projectEntityList) {
@@ -85,17 +87,17 @@ public class ProjectService {
 
     /** 프로젝트에 팀원추가 */
     public ProjectParticipantsDTO inviteParticipants(InviteParticipantsDTO inviteParticipantsDTO) {
-        User user = userRepository.findByEmail(inviteParticipantsDTO.getEmail());
+        User User = userRepository.findByEmail(inviteParticipantsDTO.getEmail());
         Project project = projectRepository.findById(inviteParticipantsDTO.getProjectId()).get();
         ProjectParticipants projectParticipants = projectParticipantsRepository.save(new ProjectParticipants().builder()
-                        .user(user)
+                        .user(User)
                         .project(project)
                         .enterDate(LocalDateTime.now().toString())
                 .build());
 
         return ProjectParticipantsDTO.builder()
                 .projectParticipantsId(projectParticipants.getProjectParticipantsId())
-                .userId(user.getUserId())
+                .userId(User.getUserId())
                 .projectId(project.getProjectId())
                 .enterDate(projectParticipants.getEnterDate())
                 .build();

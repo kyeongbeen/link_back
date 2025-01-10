@@ -6,11 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Data
-@Getter
-@Setter
-@Builder
-public class SignupDTO {
-    private String userName;
-    private String email;
+@Getter @Setter @Builder
+public class LoginDTO {
+    private String username;
     private String password;
 }
