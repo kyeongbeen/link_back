@@ -1,10 +1,7 @@
 package com.example.link.User.controller;
 
 
-import com.example.link.User.dto.LoginDTO;
-import com.example.link.User.dto.SignupDTO;
-import com.example.link.User.dto.UserDTO;
-import com.example.link.User.dto.UserListDTO;
+import com.example.link.User.dto.*;
 import com.example.link.User.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -52,5 +49,12 @@ public class UserController {
                     "\nusername 에는 email, password 에는 해당유저의 password 입력")
     public void login(@RequestBody LoginDTO loginDTO) {}
 
+    @PostMapping("/loginReturnValue")
+    @Operation(summary = "로그인 리턴값, API 호출해도 아무런 값 출력하지 않음",
+    description = "password : 백엔드쪽 코드에서 bcrypt를 사용해서 해쉬값이 반환 \n\n" +
+            "token : Bearer 토큰기반 값 반환\n\n" +
+            "role : ROLE_USER 가 할당된 사용자\n\n" +
+            "role = ROLE_USER, token 이 있는 사용자만 /login, /signup 외의 api 를 호출가능")
+    public void loginReturnValue(@RequestBody LoginReturnValueDTO loginReturnValueDTO) {}
 
 }
