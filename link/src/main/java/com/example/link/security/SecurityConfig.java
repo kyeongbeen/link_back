@@ -52,6 +52,7 @@ public class SecurityConfig {
                         config.setAllowedMethods(List.of("*"));
                         config.setAllowedOrigins(List.of("http://localhost:3000")); // 프론트엔드 도메인 허용
                         config.setAllowedHeaders(List.of("*")); // 모든 헤더 허용
+                        config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
                         return config;
                     };
                     c.configurationSource(source);
