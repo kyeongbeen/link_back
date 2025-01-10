@@ -56,7 +56,7 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-// build를 위해 추가한 내용
+/**build를 위해 추가한 내용
 def frontendDir = "$projectDir/../../link_front/link"   // react 파일이 있는 위치
 sourceSets {
 	main {
@@ -94,3 +94,4 @@ task copyReactBuildFiles(type: Copy) {
 	from "$frontendDir/build"
 	into "$projectDir/src/main/resources/static"
 }
+*/
