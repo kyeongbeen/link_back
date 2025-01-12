@@ -55,7 +55,14 @@ public class ProjectService {
      */
     public List<ProjectDTO> getLists(Integer userId) {
 //        List<Project> projectEntityList = projectRepository.findAllByUser_UserId(userId);
-        List<Project> projectEntityList = projectRepository.findAllByUser_UserId(userId);
+//        List<Project> projectEntityList = projectRepository.findAllByUser_UserId(userId);
+//        List<ProjectParticipants> projectParticipantsEntityList = projectParticipantsRepository.findAllByUser_UserId(userId);
+        List<ProjectParticipants> list = projectParticipantsRepository.findAllByUser_UserId(userId);
+        List<Project> projectEntityList = new ArrayList<>();
+        for (ProjectParticipants projectParticipants : list) {
+            projectEntityList.add(projectRepository.findByProjectId(projectParticipants.getProject().getProjectId()));
+        }
+        log.info(projectEntityList.toString());
 
         List<ProjectDTO> projectDTOList = new ArrayList<>();
         log.info(projectEntityList.toString());

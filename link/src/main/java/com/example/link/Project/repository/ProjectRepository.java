@@ -10,5 +10,9 @@ import java.util.List;
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Integer> {
     List<Project> findAllByUser_UserId(int userId);
+
+    List<Project> findAllByProjectId(int projectId);
+
+    Project findByProjectId(int projectId);
 }
 
