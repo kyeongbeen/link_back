@@ -1,5 +1,6 @@
 package com.example.link.Post.controller;
 
+import com.example.link.Post.dto.GetPostsResponseDTO;
 import com.example.link.Post.dto.PostDto;
 import com.example.link.Post.service.PostService;
 import com.example.link.Reply.service.ReplyService;
@@ -27,13 +28,13 @@ public class PostController {
 
     @GetMapping("/list") 
     @Operation(summary = "전체 게시물 조회")
-    public List<PostDto> list(){
+    public List<GetPostsResponseDTO> list(){
         return postService.getAllPost();
     }
 
     @PostMapping("/create")
     @Operation(summary = "게시물 생성")
-    public List<PostDto> create(@Valid @RequestBody PostDto postDto) {
+    public List<GetPostsResponseDTO> create(@Valid @RequestBody PostDto postDto) {
         return postService.write(postDto); // HTTP 200 OK로 결과 반환
     }
 
@@ -54,5 +55,4 @@ public class PostController {
     public String delete(@PathVariable Integer postId) {
         return postService.delete(postId);
     }
-
 }

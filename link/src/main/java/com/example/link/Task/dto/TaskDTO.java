@@ -19,7 +19,7 @@ public class TaskDTO {
     @Schema(description = "담당자의 userId")
     private int assignedUser;
 
-    @Schema(description = "담장자 이름")
+    @Schema(description = "담당자 이름")
     private String assignedUserName;
 
     @Schema(description = "작업 이름")

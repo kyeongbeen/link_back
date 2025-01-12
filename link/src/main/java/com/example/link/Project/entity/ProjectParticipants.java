@@ -15,7 +15,7 @@ public class ProjectParticipants {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int projectParticipantsId;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;

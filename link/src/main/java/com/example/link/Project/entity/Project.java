@@ -16,7 +16,7 @@ public class Project {
     @Column(length = 256)
     private String projectName;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "project_leader_id", nullable = false)
     private User user;
