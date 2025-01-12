@@ -7,6 +7,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Getter @Setter @Builder
@@ -38,6 +40,7 @@ public class Task {
     private TaskStatus status = TaskStatus.NONE;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
 

@@ -3,6 +3,8 @@ package com.example.link.Project.entity;
 import com.example.link.User.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Getter @Setter @Builder @ToString
@@ -15,7 +17,8 @@ public class Project {
     private String projectName;
 
     @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "project_leader_id", nullable = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "project_leader_id", nullable = false)
     private User user;
 
     private String createDate;
