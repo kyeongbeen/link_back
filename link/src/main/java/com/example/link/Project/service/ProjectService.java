@@ -10,6 +10,7 @@ import com.example.link.Project.repository.ProjectParticipantsRepository;
 import com.example.link.Project.repository.ProjectRepository;
 import com.example.link.User.entity.User;
 import com.example.link.User.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -80,6 +81,7 @@ public class ProjectService {
     /** 프로젝트의 이름을 변경
      *  따로 save 메소드 호출하지 않고 Dirty Checking 으로 update 완료
      */
+    @Transactional
     public ProjectDTO updateProject(ProjectDTO projectDTO) {
         Project project = projectRepository.findById(projectDTO.getProjectId()).get();
         project.setProjectName(projectDTO.getProjectName());
